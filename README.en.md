@@ -1,19 +1,19 @@
 # fog-amqp
 [![standard-readme compliant](https://img.shields.io/badge/licence-Apache%202.0-blue)](https://www.apache.org/licenses/LICENSE-2.0) [![standard-readme compliant](https://img.shields.io/static/v1?label=official&message=demo&color=<COLOR>)](https://app.fogcloud.io)
 
-中文 | [English](readme.en.md)
+[中文](readme.md) | English
 
-FogCloud AMQP SDK。 基于开源库[amqp091-go](https://github.com/rabbitmq/amqp091-go)开发，增加了重连逻辑和更易用的API。
+FogCloud AMQP SDK. Wrapper of [amqp091-go](https://github.com/rabbitmq/amqp091-go).
 
-## 安装
+## Installation
 
 ```bash
 go get github.com/fogcloud-io/fog-amqp
 ```
 
-## 快速上手
+## Quick Start
 
-### 消费者
+### Consume
 ```golang
 var (
 	AMQPHost        = "localhost"
@@ -44,7 +44,7 @@ func main() {
 }
 ```
 
-### 生产者
+### Publish
 ```golang
 var (
 	AMQPHost        = "localhost"
