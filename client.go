@@ -461,6 +461,7 @@ func (rc *RabbitmqClient) ConsumeWithHandler(prefetchCnt int, queue string, hand
 	}
 	ch, err := rc.consume(mqCh, prefetchCnt, queue, opts...)
 	if err != nil {
+		rc.logger.Debugf("RabbitmqClient consume error: %s", err)
 		select {
 		case <-rc.done:
 			return ErrAmqpShutdown
@@ -477,8 +478,12 @@ func (rc *RabbitmqClient) ConsumeWithHandler(prefetchCnt int, queue string, hand
 	select {
 	case <-rc.done:
 		return ErrAmqpShutdown
-	default:
+	case <-rc.notifyConnClose:
 		return rc.ConsumeWithHandler(prefetchCnt, queue, handler, opts...)
+	case <-rc.notifyChanClose:
+		return rc.ConsumeWithHandler(prefetchCnt, queue, handler, opts...)
+	default:
+		return nil
 	}
 }
 

@@ -24,10 +24,11 @@ func main() {
 	err = cli.ConsumeWithHandler(
 		100,
 		FogAccessKey,
-		func(b amqp.Delivery) { log.Printf("amqp receive: %s", b.Body) },
+		func(b amqp.Delivery) { log.Printf("amqp receive: %s", b.Body); b.Ack(true) },
 		amqp.WithConsumerOptionsConsumerTag("fog-consumer-1"),
-		amqp.WithConsumerOptionsAutoAck(true),
+		amqp.WithConsumerOptionsAutoAck(false),
 		amqp.WithConsumerOptionsNoWait(true),
+		amqp.WithConsumerOptionsExclusive(true),
 	)
 	if err != nil {
 		log.Print(err)
