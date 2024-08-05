@@ -8,7 +8,7 @@ FogCloud AMQP SDK。 基于开源库[amqp091-go](https://github.com/rabbitmq/amq
 ## 安装
 
 ```bash
-go get github.com/fogcloud-io/fog-amqp
+go get github.com/fogcloud-io/fog-amqp@latest
 ```
 
 ## 快速上手
